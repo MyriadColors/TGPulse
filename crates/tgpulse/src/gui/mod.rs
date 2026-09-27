@@ -483,10 +483,17 @@ fn library_window(
                     if entry.missing.is_empty() {
                         ui.text_disabled(entry.status());
                     } else {
-                        ui.text_colored(
-                            [1.0, 0.8, 0.4, 1.0],
-                            format!("missing: {}", entry.missing.join(", ")),
-                        );
+                        let token = ui.push_style_color(imgui::StyleColor::Text, [1.0, 0.8, 0.4, 1.0]);
+                        ui.text_wrapped("Missing files. Make sure this zip includes the parent game's files.");
+                        
+                        let missing_text = if entry.missing.len() > 3 {
+                            format!("Missing: {}, and {} more...", entry.missing[0..3].join(", "), entry.missing.len() - 3)
+                        } else {
+                            format!("Missing: {}", entry.missing.join(", "))
+                        };
+                        
+                        ui.text_wrapped(missing_text);
+                        token.pop();
                     }
                 }
                 None => ui.text_disabled("Select a romset."),
