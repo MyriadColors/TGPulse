@@ -9,7 +9,7 @@ description = "Front end for the TGPulse Sega Model 1/2 emulator."
 # is built both ways: a binary everywhere, and additionally a cdylib whose
 # `android_main` the activity calls.
 [lib]
-name = "tgpulse"
+name = "tgpulse_lib"
 path = "src/lib.rs"
 crate-type = ["lib", "cdylib"]
 

@@ -62,5 +62,9 @@ CXXSTDLIB_x86_64_pc_windows_gnu = ""
 # redistributable, which a player has no reason to have installed. The `cc`
 # crate reads this same feature flag, so cimgui is compiled `/MT` to match and
 # the two halves agree on one CRT.
+[build]
+rustc-wrapper = "sccache"
+
 [target.x86_64-pc-windows-msvc]
+linker = "rust-lld.exe"
 rustflags = ["-C", "target-feature=+crt-static"]
